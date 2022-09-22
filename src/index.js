@@ -17,6 +17,7 @@ function searchCountry() {
   if (inputData === '') {
     clearInfoMarkup();
     clearListMarkup();
+    inputEl.style.outline = '2px solid grey';
     return;
   }
 
@@ -25,12 +26,15 @@ function searchCountry() {
       if (countries.length === 1) {
         renderCountryInfo(countries);
         clearListMarkup();
+        inputEl.style.outline = '2px solid lime';
       } else if (countries.length > 1 && countries.length <= 10) {
         renderCountryList(countries);
         clearInfoMarkup();
+        inputEl.style.outline = '2px solid gold';
       } else if (countries.length > 10) {
         clearListMarkup();
         clearInfoMarkup();
+        inputEl.style.outline = '2px solid lightskyblue';
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
@@ -39,6 +43,7 @@ function searchCountry() {
     .catch(Error => {
       clearListMarkup();
       clearInfoMarkup();
+      inputEl.style.outline = '2px solid tomato';
       Notify.failure('Oops, there is no country with that name');
     });
 }
@@ -92,3 +97,5 @@ function clearListMarkup() {
 function clearInfoMarkup() {
   countryInfo.innerHTML = '';
 }
+inputEl.style.cssText =
+  'outline: 2px solid grey; outline-offset: -2px; box-shadow: 0px 0px 5px rgba(56, 169, 240, 0.75);';
